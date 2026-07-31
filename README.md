@@ -1,5 +1,9 @@
 # Научный клубок - Evidence-Led R&D Knowledge Graph
 
+> **DEPRECATED.** This repository is archived and no longer maintained.
+> It is kept read-only for reference; its GDS anchor records
+> `lifecycle: archived` under `portfolio:archived-projects`.
+
 Evidence-first question answering and knowledge-graph workbench for a Russian
 mining-and-metallurgy R&D corpus.
 
