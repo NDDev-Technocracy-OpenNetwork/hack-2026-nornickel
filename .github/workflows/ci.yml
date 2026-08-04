@@ -2,37 +2,50 @@ name: CI
 
 on:
   pull_request:
-  push:
-    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   backend:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v7
-        with:
-          enable-cache: true
-      - uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-      - run: uv sync --group dev
-      - run: uv run ruff check .
-      - run: uv run mypy
-      - run: uv run pytest
+    name: backend (python)
+    uses: NDDev-it-com/ci-workflows/.github/workflows/python-ci.yml@c26c516559c01166a35b852c0d2a925cc1bd8db8
+    with:
+      python_version: '3.12'
+      install_command: 'uv sync --group dev'
+      test_command: 'uv run ruff check . && uv run mypy && uv run pytest'
 
   frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v6
-        with:
-          node-version: "24"
-          cache: npm
-          cache-dependency-path: apps/web/package-lock.json
-      - run: npm ci --no-audit
-        working-directory: apps/web
-      - run: npm run typecheck
-        working-directory: apps/web
-      - run: npm run build
-        working-directory: apps/web
+    name: frontend (node)
+    uses: NDDev-it-com/ci-workflows/.github/workflows/node-ci.yml@c26c516559c01166a35b852c0d2a925cc1bd8db8
+    with:
+      working_directory: apps/web
+      install_command: 'npm ci --no-audit'
+      test_command: 'npm run typecheck && npm run build'
+
+  codeql:
+    uses: NDDev-it-com/ci-workflows/.github/workflows/public-codeql.yml@c26c516559c01166a35b852c0d2a925cc1bd8db8
+    with:
+      languages: '["python","javascript","actions"]'
+
+  scorecard:
+    uses: NDDev-it-com/ci-workflows/.github/workflows/public-scorecard.yml@c26c516559c01166a35b852c0d2a925cc1bd8db8
+
+  dependency-review:
+    uses: NDDev-it-com/ci-workflows/.github/workflows/public-dependency-review.yml@c26c516559c01166a35b852c0d2a925cc1bd8db8
+
+  zizmor:
+    uses: NDDev-it-com/ci-workflows/.github/workflows/zizmor-sarif.yml@c26c516559c01166a35b852c0d2a925cc1bd8db8
+
+  secret-scan:
+    uses: NDDev-it-com/ci-workflows/.github/workflows/secret-scan.yml@c26c516559c01166a35b852c0d2a925cc1bd8db8
+
+  actionlint:
+    uses: NDDev-it-com/ci-workflows/.github/workflows/actionlint.yml@c26c516559c01166a35b852c0d2a925cc1bd8db8
+
+  semgrep:
+    uses: NDDev-it-com/ci-workflows/.github/workflows/semgrep-ci.yml@c26c516559c01166a35b852c0d2a925cc1bd8db8
