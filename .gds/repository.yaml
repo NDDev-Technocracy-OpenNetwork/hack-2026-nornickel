@@ -1,37 +1,45 @@
 schema_version: 1
 repository:
-  id: "repo_01KYVP87D57ECZSCB0198N2TAA"
-  display_name: "hack-2026-nornikel"
+  id: repo_01KYVP87D57ECZSCB0198N2TAA
+  display_name: hack-2026-nornickel
   roles:
-    - "project"
-  lifecycle: "archived"
+  - project
+  lifecycle: active
 provider:
-  type: "github"
-  installation: "installation:github-personal"
+  type: github
+  installation: installation:github-nddev-technocracy-opennetwork
   repository_id: 1288395889
-  owner: "rldyourmnd"
-  name: "hack-2026-nornikel"
+  owner: NDDev-Technocracy-OpenNetwork
+  name: hack-2026-nornickel
+  aliases:
+  - owner: rldyourmnd
+    name: hack-2026-nornikel
+  - owner: NDDev-Technocracy-Archive
+    name: hack-2026-nornickel
 classification:
   portfolios:
-    - "portfolio:archived-projects"
-  visibility_contract: "public"
-  data_classification: "public"
+  - portfolio:nddev-technocracy-opennetwork
+  visibility_contract: public
+  data_classification: public
 policy:
   profiles:
-    - "repository-default"
-    - "personal-default"
-  rollout_ring: "standard"
+  - repository-default
+  - organization-default
+  rollout_ring: standard
 git:
-  default_branch: "main"
-  integration: "pull-request"
-  branch_model: "task-branches"
-  handoff_pr: "never"
-  cleanup: "manual"
+  default_branch: main
+  integration: pull-request
+  branch_model: task-branches
+  handoff_pr: never
+  cleanup: manual
 agent:
-  context_profile: "project-default"
+  context_profile: project-default
   generated_agents: false
   serena:
     enabled: false
     provenance_required: false
 release:
-  mode: "none"
+  mode: none
+product:
+  purpose: 'Nornickel AI Hack 2026: evidence-backed research knowledge graph and retrieval
+    workbench for mining and metallurgy.'
