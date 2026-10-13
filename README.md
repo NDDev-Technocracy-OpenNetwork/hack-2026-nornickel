@@ -1,8 +1,17 @@
-# Научный клубок - Evidence-Led R&D Knowledge Graph
+<!-- nddev-public-hackathon -->
+# hack-2026-nornickel
 
-> **DEPRECATED.** This repository is archived and no longer maintained.
-> It is kept read-only for reference; its GDS anchor records
-> `lifecycle: archived` under `portfolio:archived-projects`.
+Nornickel AI Hack 2026: evidence-backed research knowledge graph and retrieval workbench for mining and metallurgy.
+
+[NDDev OpenNetwork](https://github.com/NDDev-Technocracy-OpenNetwork) · [Repository](https://github.com/NDDev-Technocracy-OpenNetwork/hack-2026-nornickel)
+
+This repository is a hackathon prototype or supporting tool. Follow the project-specific setup below; cloud integrations require your own configuration and credentials.
+
+---
+
+## Научный клубок - Evidence-Led R&D Knowledge Graph
+
+
 
 Evidence-first question answering and knowledge-graph workbench for a Russian
 mining-and-metallurgy R&D corpus.
